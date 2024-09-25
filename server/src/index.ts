@@ -1,17 +1,17 @@
 // PWD- 5CbDg36rQAQcFQDp
+import cors from "cors";
+import dotenv from "dotenv";
 import express, { Express } from "express";
 import mongoose from "mongoose";
 import financialRecordRouter from "./routes/financial-records";
-import cors from "cors";
-
 const app: Express = express();
 const port = process.env.PORT || 3001;
 
+dotenv.config();
 app.use(express.json());
 app.use(cors());
 
-const mongoURI: string =
-  "mongodb+srv://anamikarp28:5CbDg36rQAQcFQDp@personalfinancetracker.bw3jh.mongodb.net/";
+const mongoURI: string = String(process.env.MONGO_URI);
 
 mongoose
   .connect(mongoURI)
